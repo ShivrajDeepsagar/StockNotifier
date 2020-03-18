@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr>
+        <td><%= notification.name %></td>
+        <td><button type="button" class="btn btn-primary">Buy</button></td>
+        <td><button type="button" class="btn btn-success">Recommend</button></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= button_to 'New Stock', new_notification_path, :class => "btn btn-primary" %>

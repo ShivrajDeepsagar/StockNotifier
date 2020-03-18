@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "StockNotifier", notifications_path, method: :get, :class => 'navbar-brand'%>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      </ul>
+
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notification (<b class="notifications-count">2</b>)</a>
+            <ul class="dropdown-menu notify-drop">
+              <div class="notify-drop-title">
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">Notifications (<b id="notifications-count">2</b>)</div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div>
+                </div>
+              </div>
+            <!-- end notify title -->
+            <!-- notify content -->
+              <div class="drop-content" id="notification">
+                <% Notification.all.each do |notification| %>
+                <li>
+                    <%= notification.name %>
+                </li>
+                <% end %>
+              </div>
+            </ul>
+          </li>
+        </ul>
+      <%else%>
+        <ul class="nav navbar-nav navbar-right">
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link' %>
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+        </ul>
+      <%end%>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
